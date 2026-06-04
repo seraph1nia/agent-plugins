@@ -1,0 +1,21 @@
+{
+  "name": "agent-plugins",
+  "owner": {
+    "name": "seraph1nia"
+  },
+  "description": "Personal Claude Code plugin collection",
+  "metadata": {
+    "pluginRoot": "./plugins"
+  },
+  "plugins": [
+    {
+      "name": "factory",
+      "source": "./plugins/factory",
+      "description": "Equips Claude Code agents with Linear access for AI-driven software-delivery pipelines",
+      "author": {
+        "name": "seraph1nia"
+      },
+      "keywords": ["linear", "project-management", "factory", "mcp"]
+    }
+  ]
+}
