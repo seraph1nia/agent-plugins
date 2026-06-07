@@ -1,8 +1,7 @@
 name: agent-plugins
 version: 1.0.0
 description: Personal APM marketplace for agent plugins
-author:
-  name: seraph1nia
+author: seraph1nia
 license: MIT
 target:
   - claude

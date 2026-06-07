@@ -1,8 +1,7 @@
 name: factory
 version: 1.0.0
 description: Equips agents with Linear access for AI-driven software-delivery pipelines via Linear's official remote MCP server
-author:
-  name: seraph1nia
+author: seraph1nia
 license: MIT
 target:
   - claude
