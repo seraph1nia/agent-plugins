@@ -7,7 +7,6 @@ license: MIT
 target:
   - claude
   - codex
-type: marketplace
 marketplace:
   owner:
     name: seraph1nia
