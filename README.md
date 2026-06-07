@@ -62,22 +62,24 @@ npx -y mcp-remote https://mcp.linear.app/mcp
 
 ```text
 apm.yml
+.claude-plugin/
+  marketplace.json
 plugins/
   factory/
     apm.yml
 ```
 
-The root `apm.yml` contains marketplace metadata and the `marketplace.packages` list. `plugins/factory/apm.yml` contains the package metadata, target runtimes, and Linear MCP dependency.
+The root `apm.yml` contains marketplace metadata and the `marketplace.packages` list. `.claude-plugin/marketplace.json` is generated from the root manifest and must be committed so consumers can register and install from this marketplace. `plugins/factory/apm.yml` contains the package metadata, target runtimes, and Linear MCP dependency.
 
 ## Maintainer Commands
 
 ```sh
 apm marketplace check
-apm marketplace validate agent-plugins
 apm pack
+apm pack --check-clean
 ```
 
-Use `apm marketplace check` while authoring the root marketplace manifest. Use `apm pack` to produce the package bundle and generated marketplace artifact.
+Use `apm marketplace check` while authoring the root marketplace manifest. Use `apm pack` to produce `.claude-plugin/marketplace.json`, then commit that generated artifact with the manifest change. Use `apm pack --check-clean` before publishing to confirm the committed marketplace artifact matches the current manifests.
 
 ## References
 

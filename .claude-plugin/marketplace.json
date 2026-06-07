@@ -1,0 +1,30 @@
+{
+  "name": "agent-plugins",
+  "owner": {
+    "name": "seraph1nia",
+    "url": "https://github.com/seraph1nia"
+  },
+  "metadata": {
+    "homepage": "https://github.com/seraph1nia/agent-plugins",
+    "pluginRoot": "./plugins"
+  },
+  "plugins": [
+    {
+      "name": "factory",
+      "description": "Equips agents with Linear access for AI-driven software-delivery pipelines",
+      "author": {
+        "name": "seraph1nia"
+      },
+      "license": "MIT",
+      "repository": "https://github.com/seraph1nia/agent-plugins",
+      "tags": [
+        "linear",
+        "project-management",
+        "factory",
+        "mcp"
+      ],
+      "homepage": "https://github.com/seraph1nia/agent-plugins/tree/main/plugins/factory",
+      "source": "./factory"
+    }
+  ]
+}

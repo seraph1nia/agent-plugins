@@ -3,9 +3,6 @@ version: 1.0.0
 description: Personal APM marketplace for agent plugins
 author: seraph1nia
 license: MIT
-target:
-  - claude
-  - codex
 marketplace:
   owner:
     name: seraph1nia

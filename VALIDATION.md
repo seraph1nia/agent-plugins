@@ -1,43 +1,109 @@
 # Validation
 
-## Local Checks Run
+## APM CLI
+
+Installed the official APM CLI 0.18.0 from the `apm-cli` Python package after the prebuilt Linux binary failed on this container's glibc version.
 
 ```sh
-node - <<'NODE'
-const fs = require('fs');
-const allowedTargets = new Set(['vscode','agents','copilot','claude','cursor','opencode','codex','gemini','windsurf','all']);
-const allowedTypes = new Set(['instructions','skill','hybrid','prompts']);
-const files = ['apm.yml', 'plugins/factory/apm.yml'];
-for (const file of files) {
-  const text = fs.readFileSync(file, 'utf8');
-  if (!/^name: [A-Za-z0-9._-]+$/m.test(text)) throw new Error(`${file}: missing name`);
-  if (!/^version: \d+\.\d+\.\d+$/m.test(text)) throw new Error(`${file}: missing semver version`);
-  if (/^author:\s*$/m.test(text)) throw new Error(`${file}: top-level author must be a string`);
-  const targets = [...text.matchAll(/^\s+- (claude|codex|vscode|agents|copilot|cursor|opencode|gemini|windsurf|all)$/gm)].map(m => m[1]);
-  for (const target of targets) if (!allowedTargets.has(target)) throw new Error(`${file}: invalid target ${target}`);
-  const type = text.match(/^type: (\S+)$/m)?.[1];
-  if (type && !allowedTypes.has(type)) throw new Error(`${file}: invalid package type ${type}`);
-}
-const root = fs.readFileSync('apm.yml', 'utf8');
-if (!/^marketplace:\n/m.test(root)) throw new Error('root manifest missing marketplace block');
-if (!/^\s+owner:\n\s+name: seraph1nia$/m.test(root)) throw new Error('marketplace owner missing');
-if (!/^\s+packages:\n\s+- name: factory\n\s+source: \.\/plugins\/factory$/m.test(root)) throw new Error('marketplace package list missing factory local source');
-const pkg = fs.readFileSync('plugins/factory/apm.yml', 'utf8');
-for (const pattern of [/^dependencies:\n\s+mcp:/m, /^\s+- name: linear$/m, /^\s+registry: false$/m, /^\s+transport: stdio$/m, /^\s+command: npx$/m]) {
-  if (!pattern.test(pkg)) throw new Error(`factory manifest missing ${pattern}`);
-}
-console.log('schema-shape validation OK');
-NODE
+PATH=/workspace/.local/bin:$PATH apm --version
 ```
 
-## APM CLI Validation
+Output:
 
-The APM CLI was not installed in this local environment, so `apm marketplace check` could not be run here.
+```text
+Agent Package Manager (APM) CLI version 0.18.0
+```
 
-Run these checks in an environment with APM installed:
+## Checks Run
+
+Generated the marketplace artifact from the root marketplace manifest:
 
 ```sh
-apm marketplace check
-apm marketplace validate agent-plugins
-apm pack
+PATH=/workspace/.local/bin:$PATH apm pack --json
 ```
+
+Output:
+
+```json
+{
+  "ok": true,
+  "dry_run": false,
+  "warnings": [],
+  "errors": [],
+  "marketplace": {
+    "outputs": [
+      {
+        "format": "claude",
+        "path": "/workspace/repo/.claude-plugin/marketplace.json",
+        "added": 0,
+        "updated": 0,
+        "unchanged": 1,
+        "skipped": 0
+      }
+    ]
+  },
+  "bundle": null,
+  "plugin_manifests": {
+    "written": [],
+    "skipped": [],
+    "dry_run": []
+  },
+  "version_alignment": null,
+  "drift": null
+}
+```
+
+Verified the committed marketplace artifact is current:
+
+```sh
+PATH=/workspace/.local/bin:$PATH apm pack --check-clean --json
+```
+
+Output:
+
+```json
+{
+  "ok": true,
+  "dry_run": false,
+  "warnings": [],
+  "errors": [],
+  "marketplace": {
+    "outputs": [
+      {
+        "format": "claude",
+        "path": "/workspace/repo/.claude-plugin/marketplace.json",
+        "added": 0,
+        "updated": 0,
+        "unchanged": 1,
+        "skipped": 0
+      }
+    ]
+  },
+  "bundle": null,
+  "plugin_manifests": {
+    "written": [],
+    "skipped": [],
+    "dry_run": []
+  },
+  "version_alignment": null,
+  "drift": {
+    "ok": true,
+    "outputs": [
+      {
+        "format": "claude",
+        "path": ".claude-plugin/marketplace.json",
+        "status": "unchanged",
+        "differences": []
+      }
+    ]
+  }
+}
+```
+
+Ran marketplace authoring validation:
+
+```sh
+PATH=/workspace/.local/bin:$PATH apm marketplace check
+```
+
+Result: failed in APM 0.18.0 for the local package source `./plugins/factory` with `Git authentication failed during ls-remote.` The manifest schema documents local marketplace package sources beginning with `./` as valid and says they skip git resolution, while `apm pack` successfully consumes the local package source and generates the marketplace artifact.
