@@ -5,7 +5,7 @@
 - [x] 5. Add applicable Microsoft APM validation checks for root marketplace metadata, generated Claude marketplace metadata, and `plugins/factory/apm.yml`.
 - [x] 6. Add skills-level validation only if a real `skills/` tree exists or APM exposes a successful skills validation command for this repo.
 - [x] 7. Add `.github/workflows/validation.yml` that triggers on pull requests and pushes to `main`.
-- [ ] 8. Ensure the GitHub Actions workflow starts with the official mise action before validation commands.
+- [x] 8. Ensure the GitHub Actions workflow starts with the official mise action before validation commands.
 - [ ] 9. Ensure the GitHub Actions workflow runs `mise install` and then `scripts/validate.sh` without duplicating validation command lists.
 - [ ] 10. Update project documentation with local validation instructions, the mise prerequisite, the script entrypoint, and relevant APM CLI limitations.
 - [ ] 11. Run `mise install` locally and confirm required tools install successfully.
