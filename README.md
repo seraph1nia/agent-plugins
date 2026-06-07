@@ -87,7 +87,7 @@ scripts/validate.sh
 
 The validation entrypoint installs or verifies the Python `apm-cli` package, structurally checks `.claude-plugin/marketplace.json`, runs applicable APM metadata checks, and confirms `apm pack --check-clean --json` reports clean generated marketplace output.
 
-`apm marketplace check --offline` is included because it is the Microsoft APM authoring check for marketplace metadata. APM CLI 0.18.0 may fail the non-offline form against this repository's local package source (`./plugins/factory`) by attempting git resolution; `apm pack --check-clean --json` is the publishing check that succeeds for this aggregator layout and verifies the generated Claude marketplace artifact.
+`apm marketplace check --offline` is included because it is the Microsoft APM authoring check for marketplace metadata. APM CLI 0.18.0 may report missing cached refs for this repository's local package source (`./plugins/factory`), and the non-offline form may attempt git resolution for that same local source; `apm pack --check-clean --json` is the publishing check that succeeds for this aggregator layout and verifies the generated Claude marketplace artifact.
 
 Use `apm pack` directly only when intentionally regenerating `.claude-plugin/marketplace.json`, then commit that generated artifact with the manifest change.
 

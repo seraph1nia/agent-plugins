@@ -107,7 +107,7 @@ Output:
 }
 ```
 
-The validation scripts use `apm marketplace check --offline` for the Microsoft APM marketplace authoring metadata check and `apm pack --check-clean --json` for clean generated marketplace output.
+The validation scripts use `apm marketplace check --offline` for the Microsoft APM marketplace authoring metadata check and `apm pack --check-clean --json` for clean generated marketplace output. APM CLI 0.18.0 can report missing cached refs for local package sources in offline mode, so the script treats that specific local-source cache condition as a warning and then enforces the clean pack report.
 
 Known limitation from manual validation: the non-offline marketplace authoring validation failed:
 

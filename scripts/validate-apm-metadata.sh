@@ -6,7 +6,17 @@ cd "$ROOT_DIR"
 
 . "$ROOT_DIR/scripts/ensure-apm.sh"
 
-apm marketplace check --offline
+if ! MARKETPLACE_CHECK_OUTPUT="$(apm marketplace check --offline 2>&1)"; then
+  printf '%s\n' "$MARKETPLACE_CHECK_OUTPUT"
+
+  if grep -q 'source: ./plugins/' apm.yml && grep -q 'No cached refs' <<<"$MARKETPLACE_CHECK_OUTPUT"; then
+    echo "warning: apm marketplace check --offline has no cached refs for local package sources; continuing with apm pack validation" >&2
+  else
+    exit 1
+  fi
+else
+  printf '%s\n' "$MARKETPLACE_CHECK_OUTPUT"
+fi
 
 PACK_OUTPUT="$(apm pack --check-clean --json)"
 printf '%s\n' "$PACK_OUTPUT"
