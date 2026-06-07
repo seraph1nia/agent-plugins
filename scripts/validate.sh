@@ -20,4 +20,5 @@ run_step() {
 }
 
 run_step "Validate generated Claude marketplace metadata" bash "$SCRIPT_DIR/validate-claude-marketplace.sh"
+run_step "Validate APM marketplace and plugin metadata" bash "$SCRIPT_DIR/validate-apm-metadata.sh"
 run_step "Validate APM package output" bash "$SCRIPT_DIR/validate-apm.sh"
