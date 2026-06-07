@@ -1,105 +1,91 @@
 # agent-plugins
 
-A personal Claude Code plugin marketplace hosted at `github:seraph1nia/agent-plugins`.
+A personal APM marketplace hosted at `seraph1nia/agent-plugins`.
 
-This repository provides a collection of plugins that extend Claude Code with additional MCP
-(Model Context Protocol) servers and capabilities. Plugins are installed directly from this
-repo using Claude Code's built-in plugin system.
+This repository publishes agent packages through [Agent Package Manager](https://microsoft.github.io/apm/). The root `apm.yml` is the marketplace authoring manifest, and each plugin package keeps its own `apm.yml` under `plugins/`.
 
----
+## Getting Started
 
-## How Claude Code's plugin system works
+### Register the Marketplace
 
-Claude Code has a first-class plugin/marketplace system:
-
-- A **marketplace** is a GitHub repository with a `.claude-plugin/marketplace.json` catalog
-  at its root and one plugin directory per plugin under a configurable `pluginRoot`.
-- A **plugin** is a subdirectory containing:
-  - `.claude-plugin/plugin.json` — plugin manifest (name, version, description, author…)
-  - `.mcp.json` — one or more bundled MCP server configurations
-- When you add a marketplace and install a plugin, Claude Code merges the plugin's
-  `.mcp.json` into your local MCP configuration automatically.
-
----
-
-## Getting started
-
-### 1. Add this marketplace to Claude Code
-
-```
-/plugin marketplace add github:seraph1nia/agent-plugins
+```sh
+apm marketplace add seraph1nia/agent-plugins --name agent-plugins
 ```
 
-This registers the marketplace so you can browse and install its plugins.
+This lets APM resolve packages from this repository by marketplace name.
 
-### 2. Install a plugin
+### Install a Package
 
+```sh
+apm install factory@agent-plugins
 ```
-/plugin install factory@agent-plugins
+
+You can also declare the package directly in a project manifest:
+
+```yaml
+dependencies:
+  apm:
+    - name: factory
+      marketplace: agent-plugins
 ```
 
-Replace `factory` with the name of any plugin listed below. The `@agent-plugins` suffix
-tells Claude Code which marketplace to pull from.
+Then run:
 
----
+```sh
+apm install
+```
 
-## Available plugins
+## Available Packages
 
-| Plugin | Description | Included MCP Servers |
-|--------|-------------|----------------------|
-| `factory` | Equips Claude Code agents with Linear access for AI-driven software-delivery pipelines | `linear` — Linear's official remote MCP server |
+| Package | Description | Dependencies |
+| --- | --- | --- |
+| `factory` | Equips agents with Linear access for AI-driven software-delivery pipelines | Linear MCP server via `mcp-remote` |
 
----
-
-## Plugin details
+## Package Details
 
 ### `factory`
 
-Connects Claude Code to [Linear](https://linear.app) via Linear's official remote MCP server.
-This enables Claude Code agents (and interactive sessions) to read and write Linear issues,
-comments, projects, and more — without requiring manual API key configuration.
+The `factory` package configures Linear's official remote MCP server as a self-defined APM MCP dependency. APM installs it for the supported runtimes declared by the package manifest:
 
-**Authentication:** The plugin uses [`mcp-remote`](https://www.npmjs.com/package/mcp-remote)
-which triggers Linear's OAuth 2.1 flow on first use. You will be prompted to authorise in
-your browser; after that, the token is cached automatically.
+- `claude`
+- `codex`
 
-**Alternative (API key):** If you prefer to authenticate with a Linear API key instead of
-OAuth, you can override the MCP config in your local `~/.claude/mcp.json`:
+The MCP server is launched with:
 
-```json
-{
-  "mcpServers": {
-    "linear": {
-      "type": "http",
-      "url": "https://mcp.linear.app/mcp",
-      "headers": {
-        "Authorization": "Bearer ${LINEAR_API_KEY}"
-      }
-    }
-  }
-}
+```sh
+npx -y mcp-remote https://mcp.linear.app/mcp
 ```
 
----
+`mcp-remote` starts Linear's OAuth flow on first use and caches the token after authorization.
 
-## Repository layout
+## Repository Layout
 
-```
+```text
+apm.yml
 .claude-plugin/
-  marketplace.json          # Root marketplace catalog
+  marketplace.json
 plugins/
   factory/
-    .claude-plugin/
-      plugin.json           # Plugin manifest
-    .mcp.json               # Linear MCP server config
+    apm.yml
 ```
 
----
+The root `apm.yml` contains marketplace metadata and the `marketplace.packages` list. `.claude-plugin/marketplace.json` is generated from the root manifest and must be committed so consumers can register and install from this marketplace. `plugins/factory/apm.yml` contains the package metadata, target runtimes, and Linear MCP dependency.
 
-## Reference links
+## Maintainer Commands
 
-- [Claude Code plugin marketplace docs](https://code.claude.com/docs/en/plugin-marketplaces.md)
-- [Claude Code plugin manifest reference](https://code.claude.com/docs/en/plugins-reference.md)
-- [Claude Code MCP configuration](https://code.claude.com/docs/en/mcp.md)
+```sh
+apm marketplace check
+apm pack
+apm pack --check-clean
+```
+
+Use `apm marketplace check` while authoring the root marketplace manifest. Use `apm pack` to produce `.claude-plugin/marketplace.json`, then commit that generated artifact with the manifest change. Use `apm pack --check-clean` before publishing to confirm the committed marketplace artifact matches the current manifests.
+
+## References
+
+- [APM producer guide](https://microsoft.github.io/apm/producer/)
+- [APM package installation](https://microsoft.github.io/apm/consumer/install-packages/)
+- [APM marketplace CLI](https://microsoft.github.io/apm/reference/cli/marketplace/)
+- [APM manifest schema](https://microsoft.github.io/apm/reference/manifest-schema/)
 - [Linear MCP server docs](https://linear.app/docs/mcp)
-- [Linear MCP changelog (May 2025)](https://linear.app/changelog/2025-05-01-mcp)
+- [`mcp-remote`](https://www.npmjs.com/package/mcp-remote)

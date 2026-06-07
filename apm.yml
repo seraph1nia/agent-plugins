@@ -1,0 +1,28 @@
+name: agent-plugins
+version: 1.0.0
+description: Personal APM marketplace for agent plugins
+author: seraph1nia
+license: MIT
+marketplace:
+  owner:
+    name: seraph1nia
+    url: https://github.com/seraph1nia
+  metadata:
+    homepage: https://github.com/seraph1nia/agent-plugins
+    pluginRoot: ./plugins
+  build:
+    tagPattern: "{name}--v{version}"
+  packages:
+    - name: factory
+      source: ./plugins/factory
+      description: Equips agents with Linear access for AI-driven software-delivery pipelines
+      homepage: https://github.com/seraph1nia/agent-plugins/tree/main/plugins/factory
+      repository: https://github.com/seraph1nia/agent-plugins
+      author:
+        name: seraph1nia
+      license: MIT
+      tags:
+        - linear
+        - project-management
+        - factory
+        - mcp

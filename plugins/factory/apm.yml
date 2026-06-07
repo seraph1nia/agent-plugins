@@ -1,0 +1,19 @@
+name: factory
+version: 1.0.0
+description: Equips agents with Linear access for AI-driven software-delivery pipelines via Linear's official remote MCP server
+author: seraph1nia
+license: MIT
+target:
+  - claude
+  - codex
+type: hybrid
+dependencies:
+  mcp:
+    - name: linear
+      registry: false
+      transport: stdio
+      command: npx
+      args:
+        - -y
+        - mcp-remote
+        - https://mcp.linear.app/mcp
