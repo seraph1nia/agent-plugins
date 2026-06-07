@@ -1,0 +1,14 @@
+- [ ] 1. Add a root `.mise.toml` that pins Python for `apm-cli` and Node.js for npm-based validation tooling.
+- [ ] 2. Add `scripts/validate-apm.sh` to install or verify `apm` and run `apm pack --check-clean --json` from the repo root.
+- [ ] 3. Add `scripts/validate-claude-marketplace.sh` to run the verified Claude marketplace/plugin validation command or structurally validate `.claude-plugin/marketplace.json` with a documented fallback.
+- [ ] 4. Add `scripts/validate.sh` to orchestrate all local validation steps with strict bash mode, repo-root detection, and clear errors.
+- [ ] 5. Add applicable Microsoft APM validation checks for root marketplace metadata, generated Claude marketplace metadata, and `plugins/factory/apm.yml`.
+- [ ] 6. Add skills-level validation only if a real `skills/` tree exists or APM exposes a successful skills validation command for this repo.
+- [ ] 7. Add `.github/workflows/validation.yml` that triggers on pull requests and pushes to `main`.
+- [ ] 8. Ensure the GitHub Actions workflow starts with the official mise action before validation commands.
+- [ ] 9. Ensure the GitHub Actions workflow runs `mise install` and then `scripts/validate.sh` without duplicating validation command lists.
+- [ ] 10. Update project documentation with local validation instructions, the mise prerequisite, the script entrypoint, and relevant APM CLI limitations.
+- [ ] 11. Run `mise install` locally and confirm required tools install successfully.
+- [ ] 12. Run `scripts/validate.sh` locally and confirm it succeeds.
+- [ ] 13. Confirm `apm pack --check-clean --json` reports clean generated marketplace output.
+- [ ] 14. Confirm `git status --short` shows no generated artifact drift after validation.
