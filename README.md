@@ -73,13 +73,23 @@ The root `apm.yml` contains marketplace metadata and the `marketplace.packages` 
 
 ## Maintainer Commands
 
+Install the local validation toolchain with [mise](https://mise.jdx.dev/):
+
 ```sh
-apm marketplace check
-apm pack
-apm pack --check-clean
+mise install
 ```
 
-Use `apm marketplace check` while authoring the root marketplace manifest. Use `apm pack` to produce `.claude-plugin/marketplace.json`, then commit that generated artifact with the manifest change. Use `apm pack --check-clean` before publishing to confirm the committed marketplace artifact matches the current manifests.
+Run the same validation entrypoint used by CI:
+
+```sh
+scripts/validate.sh
+```
+
+The validation entrypoint installs or verifies the Python `apm-cli` package, structurally checks `.claude-plugin/marketplace.json`, runs applicable APM metadata checks, and confirms `apm pack --check-clean --json` reports clean generated marketplace output.
+
+`apm marketplace check --offline` is included because it is the Microsoft APM authoring check for marketplace metadata. APM CLI 0.18.0 may fail the non-offline form against this repository's local package source (`./plugins/factory`) by attempting git resolution; `apm pack --check-clean --json` is the publishing check that succeeds for this aggregator layout and verifies the generated Claude marketplace artifact.
+
+Use `apm pack` directly only when intentionally regenerating `.claude-plugin/marketplace.json`, then commit that generated artifact with the manifest change.
 
 ## References
 

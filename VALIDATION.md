@@ -16,6 +16,13 @@ Agent Package Manager (APM) CLI version 0.18.0
 
 ## Checks Run
 
+Run all local validation through the script entrypoint:
+
+```sh
+mise install
+scripts/validate.sh
+```
+
 Generated the marketplace artifact from the root marketplace manifest:
 
 ```sh
@@ -100,7 +107,9 @@ Output:
 }
 ```
 
-Ran marketplace authoring validation:
+The validation scripts use `apm marketplace check --offline` for the Microsoft APM marketplace authoring metadata check and `apm pack --check-clean --json` for clean generated marketplace output.
+
+Known limitation from manual validation: the non-offline marketplace authoring validation failed:
 
 ```sh
 PATH=/workspace/.local/bin:$PATH apm marketplace check
