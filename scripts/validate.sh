@@ -11,6 +11,10 @@ if [[ ! -f "apm.yml" || ! -d "plugins" ]]; then
   exit 1
 fi
 
+if [[ -z "${AGENT_PLUGINS_MISE_EXEC:-}" ]] && ! command -v apm >/dev/null 2>&1 && command -v mise >/dev/null 2>&1; then
+  exec env AGENT_PLUGINS_MISE_EXEC=1 mise exec -- bash "$SCRIPT_DIR/validate.sh"
+fi
+
 run_step() {
   local name="$1"
   shift

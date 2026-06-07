@@ -19,9 +19,12 @@ Agent Package Manager (APM) CLI version 0.18.0
 Run all local validation through the script entrypoint:
 
 ```sh
+mise trust .mise.toml
 mise install
-scripts/validate.sh
+mise exec -- scripts/validate.sh
 ```
+
+The repository pins `apm-cli` in `.mise.toml` as `pipx:apm-cli` version 0.18.0. The validation scripts do not install or upgrade `apm-cli` at runtime; they verify that the pinned CLI is available from the mise-managed environment.
 
 Generated the marketplace artifact from the root marketplace manifest:
 

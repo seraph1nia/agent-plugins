@@ -76,16 +76,17 @@ The root `apm.yml` contains marketplace metadata and the `marketplace.packages` 
 Install the local validation toolchain with [mise](https://mise.jdx.dev/):
 
 ```sh
+mise trust .mise.toml
 mise install
 ```
 
 Run the same validation entrypoint used by CI:
 
 ```sh
-scripts/validate.sh
+mise exec -- scripts/validate.sh
 ```
 
-The validation entrypoint installs or verifies the Python `apm-cli` package, structurally checks `.claude-plugin/marketplace.json`, runs applicable APM metadata checks, and confirms `apm pack --check-clean --json` reports clean generated marketplace output.
+The top-level validation script also re-executes through `mise exec` when mise is available and `apm` is not already on `PATH`, so `scripts/validate.sh` works from a normal shell after the repository config is trusted and installed. The validation entrypoint verifies the pinned Python `apm-cli` package from `.mise.toml`, structurally checks `.claude-plugin/marketplace.json`, runs applicable APM metadata checks, and confirms `apm pack --check-clean --json` reports clean generated marketplace output.
 
 `apm marketplace check --offline` is included because it is the Microsoft APM authoring check for marketplace metadata. APM CLI 0.18.0 may report missing cached refs for this repository's local package source (`./plugins/factory`), and the non-offline form may attempt git resolution for that same local source; `apm pack --check-clean --json` is the publishing check that succeeds for this aggregator layout and verifies the generated Claude marketplace artifact.
 
