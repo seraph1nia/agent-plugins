@@ -1,4 +1,4 @@
-- [ ] 1. Add a root `.mise.toml` that pins Python for `apm-cli` and Node.js for npm-based validation tooling.
+- [x] 1. Add a root `.mise.toml` that pins Python for `apm-cli` and Node.js for npm-based validation tooling.
 - [ ] 2. Add `scripts/validate-apm.sh` to install or verify `apm` and run `apm pack --check-clean --json` from the repo root.
 - [ ] 3. Add `scripts/validate-claude-marketplace.sh` to run the verified Claude marketplace/plugin validation command or structurally validate `.claude-plugin/marketplace.json` with a documented fallback.
 - [ ] 4. Add `scripts/validate.sh` to orchestrate all local validation steps with strict bash mode, repo-root detection, and clear errors.
