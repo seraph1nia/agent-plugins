@@ -17,3 +17,9 @@ jobs:
         uses: jdx/mise-action@v3
         with:
           install: false
+
+      - name: Install toolchain
+        run: mise install
+
+      - name: Run validation
+        run: scripts/validate.sh
