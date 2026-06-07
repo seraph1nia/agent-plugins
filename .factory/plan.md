@@ -2,145 +2,131 @@
 
 ## Goal
 
-Migrate the repo from the Claude-specific `.claude-plugin` format to
-[APM (Agent Package Manager)](https://microsoft.github.io/apm/producer/) — Microsoft's
-multi-target package system. Treat the repo as an **APM marketplace** containing multiple
-packages (currently one: `factory`). Update README with the new workflow.
-
----
+Migrate this repository from the Claude Code `.claude-plugin` format to Agent Package
+Manager (APM). The root repository should become an APM marketplace that can contain
+multiple packages; today it will list the existing `factory` package. Update the README
+so consumers use APM commands and dependency syntax instead of Claude plugin commands.
 
 ## Current State
 
-```
+```text
 .claude-plugin/
-  marketplace.json              # Claude-plugin marketplace catalog
+  marketplace.json
 plugins/
   factory/
     .claude-plugin/
-      plugin.json               # Claude-plugin manifest
-    .mcp.json                   # Linear MCP server config
+      plugin.json
+    .mcp.json
 README.md
 ```
 
----
+The existing `factory` plugin only contributes one MCP server configuration:
+
+```json
+{
+  "mcpServers": {
+    "linear": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://mcp.linear.app/mcp"]
+    }
+  }
+}
+```
 
 ## Target State
 
-```
-apm.yml                         # Root marketplace manifest (APM)
+```text
+apm.yml
+.claude-plugin/
+  marketplace.json
+.agents/
+  plugins/
+    marketplace.json
 plugins/
   factory/
-    apm.yml                     # Factory package manifest (APM)
-README.md                       # Rewritten for APM workflow
+    apm.yml
+README.md
 .factory/
-  plan.md                       # This file
-  TASKS.md                      # (added by task agent)
+  plan.md
 ```
 
-Files to **delete** (old format, replaced by APM):
-- `.claude-plugin/marketplace.json`
+Remove the obsolete Claude plugin package files after their data has been represented in
+APM:
+
 - `plugins/factory/.claude-plugin/plugin.json`
-- `plugins/factory/.mcp.json`  ← MCP config migrates into `plugins/factory/apm.yml`
+- `plugins/factory/.mcp.json`
 
----
+Replace the existing hand-authored `.claude-plugin/marketplace.json` with marketplace
+output generated from APM, if `apm pack` produces it.
 
-## Implementation
+## Implementation Approach
 
-### 1. Create `/apm.yml` (root marketplace manifest)
+1. Add root `apm.yml` as the marketplace authoring manifest.
+   - Include normal package fields: `name`, `version`, `description`, `author`, `license`.
+   - Add a `marketplace:` block with `owner`, metadata, and `packages`.
+   - Use the recommended `marketplace.outputs` map so the marketplace can emit both
+     Claude and Codex marketplace files:
+     `claude.output: .claude-plugin/marketplace.json` and
+     `codex.output: .agents/plugins/marketplace.json`.
+   - List `factory` as a local package source: `source: ./plugins/factory`.
+   - Include required marketplace entry fields such as `version`, `description`, `tags`,
+     and `category` for Codex output.
+   - Keep the marketplace ready for multiple packages by using the `packages:` list rather
+     than a single-package shortcut.
 
-```yaml
-name: agent-plugins
-version: 1.0.0
-description: Personal Claude Code plugin collection — a marketplace of AI coding agent packages
-author: seraph1nia
-license: MIT
+2. Add `plugins/factory/apm.yml` as the package manifest.
+   - Port `name`, `version`, `description`, `author`, and keywords/tags from the old
+     Claude manifest.
+   - Set targets to the supported agent runtimes this repo intends to serve, including
+     `claude` and `codex`; confirm exact target names against `apm targets` or the docs
+     before implementation.
+   - Declare the Linear MCP dependency in `dependencies.mcp` using the existing
+     `npx -y mcp-remote https://mcp.linear.app/mcp` command so OAuth behaviour is
+     preserved.
 
-marketplace:
-  owner:
-    name: seraph1nia
-    url: https://github.com/seraph1nia
-  packages:
-    - name: factory
-      source: seraph1nia/agent-plugins
-      subdir: plugins/factory
-      description: Equips Claude Code agents with Linear access for AI-driven software-delivery pipelines
-      tags: [linear, project-management, factory, mcp]
-```
+3. Delete the old Claude plugin manifests.
+   - Remove empty `.claude-plugin` directories after deleting their files.
+   - Do not change unrelated branch or factory scaffolding files.
 
-Key points:
-- `marketplace.packages[].source` = `owner/repo` shorthand for the **same** repo
-- `subdir` points to the package directory within this repo
-- Additional packages can be appended to `packages:` as the marketplace grows
+4. Rewrite `README.md` around APM.
+   - Describe the repo as an APM marketplace, not a Claude Code marketplace.
+   - Replace `/plugin marketplace add` and `/plugin install` examples with APM flows:
+     `apm marketplace add seraph1nia/agent-plugins` followed by
+     `apm install factory@agent-plugins`, plus direct dependency examples using
+     `dependencies.apm`.
+   - Keep the `factory` description and Linear OAuth/API-key notes, updating any local
+     config references so they are not Claude-only unless explicitly called out as a
+     Claude override.
+   - Update repository layout and reference links to APM producer, marketplace, manifest,
+     MCP, and Linear docs.
 
-### 2. Create `/plugins/factory/apm.yml` (package manifest)
+5. Validate.
+   - Run a YAML parse/check if available.
+   - Prefer `apm marketplace check`, `apm pack --dry-run`, and `apm install
+     ./plugins/factory --dry-run` if the CLI is installed; otherwise note that validation
+     could not run locally.
+   - Confirm `git status` shows only the intended migration files.
 
-```yaml
-name: factory
-version: 1.0.0
-description: Equips Claude Code agents with Linear access for AI-driven software-delivery pipelines via Linear's official remote MCP server
-author: seraph1nia
-license: MIT
-target: [claude, codex, gemini, copilot, cursor]
-type: hybrid
-includes: auto
+## Constraints and Risks
 
-dependencies:
-  mcp:
-    - name: linear
-      transport: stdio
-      registry: false
-      command: npx
-      args: ["-y", "mcp-remote", "https://mcp.linear.app/mcp"]
-```
+- The APM docs require remote marketplace package entries to declare a `version` or `ref`;
+  using `source: ./plugins/factory` avoids an unnecessary remote self-reference for this
+  monorepo-style marketplace. The local marketplace entry should still include `version`
+  for generated output metadata.
+- Removing `.claude-plugin` files intentionally breaks the old Claude `/plugin` install
+  flow. Keeping an APM-generated Claude marketplace artifact may preserve compatibility
+  for Claude consumers, but README should still make APM the supported path.
+- The old plugin has no `.apm/` primitives, only an MCP dependency. The package manifest
+  may be sufficient, but implementation should verify whether APM expects any placeholder
+  package content for MCP-only packages.
+- APM target names have changed over time; verify the exact supported list during
+  implementation before committing target values.
+- `mcp-remote` depends on `npx` at runtime and triggers Linear OAuth on first use; this is
+  existing behaviour and should remain unchanged.
 
-Key points:
-- `target` covers all major agent/IDE platforms
-- `type: hybrid` (combines instructions + skills/prompts)
-- `includes: auto` publishes all content under `.apm/` (none currently, future-proofing)
-- MCP dependency uses `registry: false` + `stdio` transport via `mcp-remote` — matches
-  the existing `.mcp.json` behaviour exactly (OAuth flow via `mcp-remote`)
+## References
 
-### 3. Delete old format files
-
-- `rm .claude-plugin/marketplace.json` (and the `.claude-plugin/` dir if empty)
-- `rm plugins/factory/.claude-plugin/plugin.json` (and `.claude-plugin/` dir)
-- `rm plugins/factory/.mcp.json`
-
-### 4. Rewrite `README.md`
-
-Replace the "How Claude Code's plugin system works" and "Getting started" sections with
-APM-centric content. Keep the Available plugins table and plugin details section but
-update command examples.
-
-New install flow to document:
-```bash
-# Install the apm CLI (once)
-npm install -g @microsoft/apm
-
-# Install the factory package from this marketplace
-apm install seraph1nia/agent-plugins --package factory
-
-# Or reference the marketplace in your own apm.yml
-dependencies:
-  apm:
-    - seraph1nia/agent-plugins/plugins/factory
-```
-
-Update "Repository layout" section to reflect new file structure.
-Update reference links to point at APM docs instead of Claude Code plugin docs.
-
----
-
-## Constraints & Risks
-
-- **Backward compat**: Removing `.claude-plugin/` files breaks anyone who installed via
-  the old `/plugin marketplace add` flow. Acceptable since the issue explicitly requests
-  this migration. The README update covers the new path.
-- **`.apm/` directory**: Not needed right now — the `factory` plugin has no skill/prompt
-  primitives, only an MCP dependency. The manifest alone is sufficient; `includes: auto`
-  is harmless when `.apm/` is absent.
-- **mcp-remote OAuth**: The `stdio` + `npx mcp-remote` approach is preserved verbatim
-  from the old `.mcp.json`, so OAuth behaviour is unchanged.
-- **No build step required**: APM requires `apm compile`/`apm pack` for publishing, but
-  the repo itself just needs the manifest files committed. Consumers `apm install` from
-  the GitHub source directly.
+- https://microsoft.github.io/apm/producer/
+- https://microsoft.github.io/apm/reference/manifest-schema/
+- https://microsoft.github.io/apm/reference/cli/marketplace/
+- https://microsoft.github.io/apm/producer/publish-to-a-marketplace/
