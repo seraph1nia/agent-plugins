@@ -1,6 +1,0 @@
-- [x] 1. Add root `apm.yml` marketplace manifest with package metadata, marketplace metadata, multi-package `packages` list, and Claude/Codex outputs.
-- [x] 2. Add `plugins/factory/apm.yml` package manifest with ported metadata, verified runtime targets, and the Linear MCP dependency.
-- [x] 3. Remove obsolete Claude plugin package files and any empty plugin `.claude-plugin` directories.
-- [x] 4. Rewrite `README.md` to describe APM marketplace installation, dependency usage, repository layout, and updated reference links.
-- [x] 5. Run available YAML and APM validation commands, or document any validation commands unavailable locally.
-- [x] 6. Confirm git status contains only the intended APM migration files before final commit.
