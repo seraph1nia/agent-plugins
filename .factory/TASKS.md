@@ -3,4 +3,4 @@
 - [x] 3. Remove obsolete Claude plugin package files and any empty plugin `.claude-plugin` directories.
 - [x] 4. Rewrite `README.md` to describe APM marketplace installation, dependency usage, repository layout, and updated reference links.
 - [x] 5. Run available YAML and APM validation commands, or document any validation commands unavailable locally.
-- [ ] 6. Confirm git status contains only the intended APM migration files before final commit.
+- [x] 6. Confirm git status contains only the intended APM migration files before final commit.
