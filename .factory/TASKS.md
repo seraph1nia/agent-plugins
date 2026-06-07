@@ -1,4 +1,4 @@
-- [ ] 1. Add root `apm.yml` marketplace manifest with package metadata, marketplace metadata, multi-package `packages` list, and Claude/Codex outputs.
+- [x] 1. Add root `apm.yml` marketplace manifest with package metadata, marketplace metadata, multi-package `packages` list, and Claude/Codex outputs.
 - [ ] 2. Add `plugins/factory/apm.yml` package manifest with ported metadata, verified runtime targets, and the Linear MCP dependency.
 - [ ] 3. Remove obsolete Claude plugin package files and any empty plugin `.claude-plugin` directories.
 - [ ] 4. Rewrite `README.md` to describe APM marketplace installation, dependency usage, repository layout, and updated reference links.
