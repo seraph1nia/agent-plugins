@@ -9,6 +9,6 @@
 - [x] 9. Ensure the GitHub Actions workflow runs `mise install` and then `scripts/validate.sh` without duplicating validation command lists.
 - [x] 10. Update project documentation with local validation instructions, the mise prerequisite, the script entrypoint, and relevant APM CLI limitations.
 - [x] 11. Run `mise install` locally and confirm required tools install successfully.
-- [ ] 12. Run `scripts/validate.sh` locally and confirm it succeeds.
+- [x] 12. Run `scripts/validate.sh` locally and confirm it succeeds.
 - [ ] 13. Confirm `apm pack --check-clean --json` reports clean generated marketplace output.
 - [ ] 14. Confirm `git status --short` shows no generated artifact drift after validation.
