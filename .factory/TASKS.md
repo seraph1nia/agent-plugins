@@ -7,7 +7,7 @@
 - [x] 7. Add `.github/workflows/validation.yml` that triggers on pull requests and pushes to `main`.
 - [x] 8. Ensure the GitHub Actions workflow starts with the official mise action before validation commands.
 - [x] 9. Ensure the GitHub Actions workflow runs `mise install` and then `scripts/validate.sh` without duplicating validation command lists.
-- [ ] 10. Update project documentation with local validation instructions, the mise prerequisite, the script entrypoint, and relevant APM CLI limitations.
+- [x] 10. Update project documentation with local validation instructions, the mise prerequisite, the script entrypoint, and relevant APM CLI limitations.
 - [ ] 11. Run `mise install` locally and confirm required tools install successfully.
 - [ ] 12. Run `scripts/validate.sh` locally and confirm it succeeds.
 - [ ] 13. Confirm `apm pack --check-clean --json` reports clean generated marketplace output.
