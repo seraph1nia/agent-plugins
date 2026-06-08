@@ -1,4 +1,4 @@
-- [ ] 1. Re-check that `actions/checkout` latest major is `v6` and `jdx/mise-action` latest major is `v3`.
+- [x] 1. Re-check that `actions/checkout` latest major is `v6` and `jdx/mise-action` latest major is `v3`.
 - [ ] 2. Update `.github/workflows/validation.yml` to use `actions/checkout@v6`.
 - [ ] 3. Configure `jdx/mise-action@v3` to install the mise toolchain directly.
 - [ ] 4. Remove the separate `Install toolchain` workflow step.
