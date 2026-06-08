@@ -7,7 +7,7 @@
 - [x] 7. Adapt `to-issues` to fetch referenced Linear issues, create sliced child Linear issues in dependency order, and remove GitHub/local-file tracker branches.
 - [x] 8. Remove or replace any vendored instruction that requires `/setup-matt-pocock-skills`.
 - [x] 9. Add package-level MIT license text and Matt Pocock attribution naming `mattpocock/skills`, the vendored commit, and the Linear-default adaptation.
-- [ ] 10. Add the `matpocock` package entry to root `apm.yml` with source, description, homepage, repository, author, license, and relevant tags.
+- [x] 10. Add the `matpocock` package entry to root `apm.yml` with source, description, homepage, repository, author, license, and relevant tags.
 - [ ] 11. Update `README.md` to list `matpocock` in Available Packages, describe the Linear-first skill workflow, note the `factory` dependency, and include the new package in the repository layout.
 - [ ] 12. Regenerate `.claude-plugin/marketplace.json` with `apm pack` and verify it lists both `factory` and `matpocock` with `matpocock` source `./matpocock`.
 - [ ] 13. Run `mise exec -- scripts/validate.sh` and confirm all validation gates pass.
