@@ -11,15 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up mise
         uses: jdx/mise-action@v3
         with:
-          install: false
-
-      - name: Install toolchain
-        run: mise install
+          install: true
 
       - name: Run validation
         run: mise exec -- scripts/validate.sh
