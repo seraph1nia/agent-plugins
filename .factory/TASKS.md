@@ -4,7 +4,7 @@
 - [x] 4. Include `grill-with-docs` support files `CONTEXT-FORMAT.md` and `ADR-FORMAT.md` alongside its `SKILL.md`.
 - [x] 5. Adapt `grill-with-docs` minimally for the Linear-default package while preserving its `CONTEXT.md` and ADR workflow.
 - [x] 6. Adapt `to-prd` to use Linear via the `factory` dependency, publish PRDs to Linear, and apply the ready-for-agent triage label when available.
-- [ ] 7. Adapt `to-issues` to fetch referenced Linear issues, create sliced child Linear issues in dependency order, and remove GitHub/local-file tracker branches.
+- [x] 7. Adapt `to-issues` to fetch referenced Linear issues, create sliced child Linear issues in dependency order, and remove GitHub/local-file tracker branches.
 - [ ] 8. Remove or replace any vendored instruction that requires `/setup-matt-pocock-skills`.
 - [ ] 9. Add package-level MIT license text and Matt Pocock attribution naming `mattpocock/skills`, the vendored commit, and the Linear-default adaptation.
 - [ ] 10. Add the `matpocock` package entry to root `apm.yml` with source, description, homepage, repository, author, license, and relevant tags.
