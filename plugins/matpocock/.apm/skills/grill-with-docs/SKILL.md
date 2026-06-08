@@ -15,6 +15,10 @@ If a question can be answered by exploring the codebase, explore the codebase in
 
 <supporting-info>
 
+## Linear-default package context
+
+This package is wired for Linear through the `factory` package dependency. When the plan references a Linear issue, project, team, or URL, use the Linear MCP tools to read the relevant issue details and comments before asking questions. Treat Linear as the only issue tracker for this package.
+
 ## Domain awareness
 
 During codebase exploration, also look for existing documentation:
