@@ -3,4 +3,4 @@
 - [x] 3. Configure `jdx/mise-action@v3` to install the mise toolchain directly.
 - [x] 4. Remove the separate `Install toolchain` workflow step.
 - [x] 5. Verify the workflow still runs validation with `mise exec -- scripts/validate.sh`.
-- [ ] 6. Run `scripts/validate.sh` locally, or document why full validation must wait for GitHub Actions.
+- [x] 6. Run `scripts/validate.sh` locally, or document why full validation must wait for GitHub Actions.
