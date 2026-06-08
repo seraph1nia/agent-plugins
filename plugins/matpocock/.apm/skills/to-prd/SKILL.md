@@ -5,7 +5,9 @@ description: Turn the current conversation context into a PRD and publish it to 
 
 This skill takes the current conversation context and codebase understanding and produces a PRD. Do NOT interview the user — just synthesize what you already know.
 
-The issue tracker and triage label vocabulary should have been provided to you — run `/setup-matt-pocock-skills` if not.
+This package is wired for Linear through the `factory` package dependency. Use Linear as the only issue tracker: publish the PRD as a Linear issue in the relevant team/project, and read any referenced Linear issue, project, team, or URL through the Linear MCP tools before writing.
+
+When publishing, apply the `ready-for-agent` triage label if that label exists in the Linear workspace. If the label is not available, publish the PRD without inventing a replacement label and mention that in your final response.
 
 ## Process
 
@@ -15,7 +17,7 @@ The issue tracker and triage label vocabulary should have been provided to you �
 
 Check with the user that these seams match their expectations.
 
-3. Write the PRD using the template below, then publish it to the project issue tracker. Apply the `ready-for-agent` triage label - no need for additional triage.
+3. Write the PRD using the template below, then publish it to Linear. Apply the `ready-for-agent` triage label when available - no need for additional triage.
 
 <prd-template>
 
