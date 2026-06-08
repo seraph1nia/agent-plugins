@@ -1,0 +1,6 @@
+- [ ] 1. Re-check that `actions/checkout` latest major is `v6` and `jdx/mise-action` latest major is `v3`.
+- [ ] 2. Update `.github/workflows/validation.yml` to use `actions/checkout@v6`.
+- [ ] 3. Configure `jdx/mise-action@v3` to install the mise toolchain directly.
+- [ ] 4. Remove the separate `Install toolchain` workflow step.
+- [ ] 5. Verify the workflow still runs validation with `mise exec -- scripts/validate.sh`.
+- [ ] 6. Run `scripts/validate.sh` locally, or document why full validation must wait for GitHub Actions.
