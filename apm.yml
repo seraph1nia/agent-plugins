@@ -26,3 +26,17 @@ marketplace:
         - project-management
         - factory
         - mcp
+    - name: matpocock
+      source: ./plugins/matpocock
+      description: Linear-first planning skills for grilling ideas into PRDs and sliced implementation issues
+      homepage: https://github.com/seraph1nia/agent-plugins/tree/main/plugins/matpocock
+      repository: https://github.com/seraph1nia/agent-plugins
+      author:
+        name: seraph1nia
+      license: MIT
+      tags:
+        - linear
+        - planning
+        - prd
+        - issues
+        - skills

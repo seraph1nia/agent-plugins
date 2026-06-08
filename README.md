@@ -20,6 +20,12 @@ This lets APM resolve packages from this repository by marketplace name.
 apm install factory@agent-plugins
 ```
 
+For the Linear-first planning skills:
+
+```sh
+apm install matpocock@agent-plugins
+```
+
 You can also declare the package directly in a project manifest:
 
 ```yaml
@@ -40,6 +46,7 @@ apm install
 | Package | Description | Dependencies |
 | --- | --- | --- |
 | `factory` | Equips agents with Linear access for AI-driven software-delivery pipelines | Linear MCP server via `mcp-remote` |
+| `matpocock` | Linear-first planning skills for grilling ideas into PRDs and sliced implementation issues | `factory` |
 
 ## Package Details
 
@@ -58,6 +65,16 @@ npx -y mcp-remote https://mcp.linear.app/mcp
 
 `mcp-remote` starts Linear's OAuth flow on first use and caches the token after authorization.
 
+### `matpocock`
+
+The `matpocock` package installs three Claude-native skills adapted from Matt Pocock's [`mattpocock/skills`](https://github.com/mattpocock/skills):
+
+- `grill-with-docs` for alignment interviews that update `CONTEXT.md` and ADRs as decisions crystallize.
+- `to-prd` for synthesizing the current conversation and codebase context into a Linear PRD issue.
+- `to-issues` for slicing an approved plan or PRD into independently grabbable Linear child issues in dependency order.
+
+The package depends on `factory` for Linear MCP access and defaults tracker behavior to Linear. It intentionally does not include the upstream interactive tracker setup skill or GitHub/local-file tracker paths.
+
 ## Repository Layout
 
 ```text
@@ -67,9 +84,23 @@ apm.yml
 plugins/
   factory/
     apm.yml
+  matpocock/
+    apm.yml
+    LICENSE
+    README.md
+    .apm/
+      skills/
+        grill-with-docs/
+          SKILL.md
+          ADR-FORMAT.md
+          CONTEXT-FORMAT.md
+        to-prd/
+          SKILL.md
+        to-issues/
+          SKILL.md
 ```
 
-The root `apm.yml` contains marketplace metadata and the `marketplace.packages` list. `.claude-plugin/marketplace.json` is generated from the root manifest and must be committed so consumers can register and install from this marketplace. `plugins/factory/apm.yml` contains the package metadata, target runtimes, and Linear MCP dependency.
+The root `apm.yml` contains marketplace metadata and the `marketplace.packages` list. `.claude-plugin/marketplace.json` is generated from the root manifest and must be committed so consumers can register and install from this marketplace. `plugins/factory/apm.yml` contains the package metadata, target runtimes, and Linear MCP dependency. `plugins/matpocock` contains Claude skill package metadata, vendored skill files, and Matt Pocock MIT attribution.
 
 ## Maintainer Commands
 
