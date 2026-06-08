@@ -11,4 +11,4 @@
 - [x] 11. Update `README.md` to list `matpocock` in Available Packages, describe the Linear-first skill workflow, note the `factory` dependency, and include the new package in the repository layout.
 - [x] 12. Regenerate `.claude-plugin/marketplace.json` with `apm pack` and verify it lists both `factory` and `matpocock` with `matpocock` source `./matpocock`.
 - [x] 13. Run `mise exec -- scripts/validate.sh` and confirm all validation gates pass.
-- [ ] 14. If `apm pack` rejects the `factory` package dependency, duplicate the `factory` Linear MCP dependency shape in `matpocock` and document the deviation.
+- [x] 14. If `apm pack` rejects the `factory` package dependency, duplicate the `factory` Linear MCP dependency shape in `matpocock` and document the deviation.
