@@ -18,8 +18,5 @@ jobs:
         with:
           install: true
 
-      - name: Install toolchain
-        run: mise install
-
       - name: Run validation
         run: mise exec -- scripts/validate.sh
