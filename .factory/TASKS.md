@@ -1,5 +1,5 @@
 - [x] 1. Create `plugins/matpocock/apm.yml` with `name: matpocock`, `type: skill`, `target: [claude]`, MIT license, and a dependency on `factory` from marketplace `agent-plugins`.
-- [ ] 2. Confirm the APM 0.18.0 skill file layout by running `apm pack` locally before finalizing the vendored skill paths.
+- [x] 2. Confirm the APM 0.18.0 skill file layout by running `apm pack` locally before finalizing the vendored skill paths.
 - [ ] 3. Vendor only `grill-with-docs`, `to-prd`, and `to-issues` from `mattpocock/skills` at commit `2bf70051928429983de3b5718d277150926f8c89`.
 - [ ] 4. Include `grill-with-docs` support files `CONTEXT-FORMAT.md` and `ADR-FORMAT.md` alongside its `SKILL.md`.
 - [ ] 5. Adapt `grill-with-docs` minimally for the Linear-default package while preserving its `CONTEXT.md` and ADR workflow.
