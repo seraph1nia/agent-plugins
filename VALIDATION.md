@@ -16,6 +16,16 @@ Agent Package Manager (APM) CLI version 0.18.0
 
 ## Checks Run
 
+Run all local validation through the script entrypoint:
+
+```sh
+mise trust .mise.toml
+mise install
+mise exec -- scripts/validate.sh
+```
+
+The repository pins `apm-cli` in `.mise.toml` as `pipx:apm-cli` version 0.18.0. The validation scripts do not install or upgrade `apm-cli` at runtime; they verify that the pinned CLI is available from the mise-managed environment.
+
 Generated the marketplace artifact from the root marketplace manifest:
 
 ```sh
@@ -100,7 +110,9 @@ Output:
 }
 ```
 
-Ran marketplace authoring validation:
+The validation scripts use `apm marketplace check --offline` for the Microsoft APM marketplace authoring metadata check and `apm pack --check-clean --json` for clean generated marketplace output. APM CLI 0.18.0 can report missing cached refs for local package sources in offline mode, so the script treats that specific local-source cache condition as a warning and then enforces the clean pack report.
+
+Known limitation from manual validation: the non-offline marketplace authoring validation failed:
 
 ```sh
 PATH=/workspace/.local/bin:$PATH apm marketplace check
