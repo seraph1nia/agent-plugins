@@ -1,0 +1,14 @@
+- [ ] 1. Create `plugins/matpocock/apm.yml` with `name: matpocock`, `type: skill`, `target: [claude]`, MIT license, and a dependency on `factory` from marketplace `agent-plugins`.
+- [ ] 2. Confirm the APM 0.18.0 skill file layout by running `apm pack` locally before finalizing the vendored skill paths.
+- [ ] 3. Vendor only `grill-with-docs`, `to-prd`, and `to-issues` from `mattpocock/skills` at commit `2bf70051928429983de3b5718d277150926f8c89`.
+- [ ] 4. Include `grill-with-docs` support files `CONTEXT-FORMAT.md` and `ADR-FORMAT.md` alongside its `SKILL.md`.
+- [ ] 5. Adapt `grill-with-docs` minimally for the Linear-default package while preserving its `CONTEXT.md` and ADR workflow.
+- [ ] 6. Adapt `to-prd` to use Linear via the `factory` dependency, publish PRDs to Linear, and apply the ready-for-agent triage label when available.
+- [ ] 7. Adapt `to-issues` to fetch referenced Linear issues, create sliced child Linear issues in dependency order, and remove GitHub/local-file tracker branches.
+- [ ] 8. Remove or replace any vendored instruction that requires `/setup-matt-pocock-skills`.
+- [ ] 9. Add package-level MIT license text and Matt Pocock attribution naming `mattpocock/skills`, the vendored commit, and the Linear-default adaptation.
+- [ ] 10. Add the `matpocock` package entry to root `apm.yml` with source, description, homepage, repository, author, license, and relevant tags.
+- [ ] 11. Update `README.md` to list `matpocock` in Available Packages, describe the Linear-first skill workflow, note the `factory` dependency, and include the new package in the repository layout.
+- [ ] 12. Regenerate `.claude-plugin/marketplace.json` with `apm pack` and verify it lists both `factory` and `matpocock` with `matpocock` source `./matpocock`.
+- [ ] 13. Run `mise exec -- scripts/validate.sh` and confirm all validation gates pass.
+- [ ] 14. If `apm pack` rejects the `factory` package dependency, duplicate the `factory` Linear MCP dependency shape in `matpocock` and document the deviation.
