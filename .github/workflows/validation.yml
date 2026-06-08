@@ -16,7 +16,7 @@ jobs:
       - name: Set up mise
         uses: jdx/mise-action@v3
         with:
-          install: false
+          install: true
 
       - name: Install toolchain
         run: mise install
