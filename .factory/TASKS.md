@@ -1,4 +1,4 @@
-- [ ] 1. Add a new minimal `plugins/<name>/apm.yml` package for the Mat Pokock `grill me` skill only, matching the existing package manifest shape
+- [x] 1. Add a new minimal `plugins/<name>/apm.yml` package for the Mat Pokock `grill me` skill only, matching the existing package manifest shape
 - [ ] 2. List the new package in root `apm.yml` so the marketplace publishes it alongside `factory`
 - [ ] 3. Regenerate `.claude-plugin/marketplace.json` from the updated manifest and keep it committed with the manifest change
 - [ ] 4. Update `README.md` only if the published package list or install example must change for the new plugin
