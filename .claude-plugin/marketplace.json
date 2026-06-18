@@ -12,35 +12,35 @@
     {
       "name": "factory",
       "description": "Equips agents with Linear access for AI-driven software-delivery pipelines",
-      "license": "MIT",
-      "homepage": "https://github.com/seraph1nia/agent-plugins/tree/main/plugins/factory",
-      "repository": "https://github.com/seraph1nia/agent-plugins",
-      "source": "./plugins/factory",
       "author": {
         "name": "seraph1nia"
       },
+      "license": "MIT",
+      "repository": "https://github.com/seraph1nia/agent-plugins",
       "tags": [
         "linear",
         "project-management",
         "factory",
         "mcp"
-      ]
+      ],
+      "homepage": "https://github.com/seraph1nia/agent-plugins/tree/main/plugins/factory",
+      "source": "./factory"
     },
     {
       "name": "grill-me",
       "description": "Gives agents Mat Pokock's grill me skill",
-      "license": "MIT",
-      "homepage": "https://github.com/seraph1nia/agent-plugins/tree/main/plugins/grill-me",
-      "repository": "https://github.com/seraph1nia/agent-plugins",
-      "source": "./plugins/grill-me",
       "author": {
         "name": "seraph1nia"
       },
+      "license": "MIT",
+      "repository": "https://github.com/seraph1nia/agent-plugins",
       "tags": [
         "mat-pocock",
         "skill",
         "grill-me"
-      ]
+      ],
+      "homepage": "https://github.com/seraph1nia/agent-plugins/tree/main/plugins/grill-me",
+      "source": "./grill-me"
     }
   ]
 }
