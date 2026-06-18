@@ -26,3 +26,15 @@ marketplace:
         - project-management
         - factory
         - mcp
+    - name: grill-me
+      source: ./plugins/grill-me
+      description: Gives agents Mat Pokock's grill me skill
+      homepage: https://github.com/seraph1nia/agent-plugins/tree/main/plugins/grill-me
+      repository: https://github.com/seraph1nia/agent-plugins
+      author:
+        name: seraph1nia
+      license: MIT
+      tags:
+        - mat-pocock
+        - skill
+        - grill-me
