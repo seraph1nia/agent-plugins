@@ -1,0 +1,3 @@
+# Contributing
+
+This is a personal APM (Agent Package Manager) marketplace: the root `apm.yml` is the marketplace authoring manifest, each plugin lives in its own directory under `plugins/` with its own `apm.yml`, and `.claude-plugin/marketplace.json` is the generated artifact that must be committed whenever those manifests change (regenerate it with `apm pack`). To contribute a new plugin, add a directory under `plugins/` containing a valid `apm.yml`, run `apm pack` to regenerate `.claude-plugin/marketplace.json`, and commit both; before opening a PR, run `mise exec -- scripts/validate.sh` to verify the manifests and generated output pass the same checks CI runs.
