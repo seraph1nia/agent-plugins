@@ -26,3 +26,17 @@ marketplace:
         - project-management
         - factory
         - mcp
+    - name: mat-pocok
+      source: ./plugins/mat-pocok
+      description: Gives agents a focused developer skill set for authoring and validating mat-pocok APM plugins
+      homepage: https://github.com/seraph1nia/agent-plugins/tree/main/plugins/mat-pocok
+      repository: https://github.com/seraph1nia/agent-plugins
+      author:
+        name: seraph1nia
+      license: MIT
+      tags:
+        - mat-pocok
+        - skills
+        - packaging
+        - validation
+        - marketplace

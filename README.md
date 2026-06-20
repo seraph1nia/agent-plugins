@@ -20,6 +20,12 @@ This lets APM resolve packages from this repository by marketplace name.
 apm install factory@agent-plugins
 ```
 
+To install the `mat-pocok` package:
+
+```sh
+apm install mat-pocok@agent-plugins
+```
+
 You can also declare the package directly in a project manifest:
 
 ```yaml
@@ -40,6 +46,7 @@ apm install
 | Package | Description | Dependencies |
 | --- | --- | --- |
 | `factory` | Equips agents with Linear access for AI-driven software-delivery pipelines | Linear MCP server via `mcp-remote` |
+| `mat-pocok` | Gives agents a focused developer skill set for authoring and validating mat-pocok APM plugins | `plugin-scaffold`, `skill-authoring`, `package-validation`, `marketplace-release` |
 
 ## Package Details
 
@@ -58,6 +65,17 @@ npx -y mcp-remote https://mcp.linear.app/mcp
 
 `mcp-remote` starts Linear's OAuth flow on first use and caches the token after authorization.
 
+### `mat-pocok`
+
+The `mat-pocok` package is a dev-focused skill bundle for building and maintaining the package itself. Its skills are split by responsibility so each one stays small and reusable:
+
+- `plugin-scaffold` for creating and normalizing the package skeleton
+- `skill-authoring` for writing focused `SKILL.md` files
+- `package-validation` for checking manifests, skill trees, and generated output
+- `marketplace-release` for syncing the root manifest with committed marketplace output
+
+The package source lives at `plugins/mat-pocok/apm.yml`, and its skills live under `plugins/mat-pocok/.apm/skills/`.
+
 ## Repository Layout
 
 ```text
@@ -67,9 +85,21 @@ apm.yml
 plugins/
   factory/
     apm.yml
+  mat-pocok/
+    apm.yml
+    .apm/
+      skills/
+        plugin-scaffold/
+          SKILL.md
+        skill-authoring/
+          SKILL.md
+        package-validation/
+          SKILL.md
+        marketplace-release/
+          SKILL.md
 ```
 
-The root `apm.yml` contains marketplace metadata and the `marketplace.packages` list. `.claude-plugin/marketplace.json` is generated from the root manifest and must be committed so consumers can register and install from this marketplace. `plugins/factory/apm.yml` contains the package metadata, target runtimes, and Linear MCP dependency.
+The root `apm.yml` contains marketplace metadata and the `marketplace.packages` list. `.claude-plugin/marketplace.json` is generated from the root manifest and must be committed so consumers can register and install from this marketplace. `plugins/factory/apm.yml` contains the package metadata, target runtimes, and Linear MCP dependency, while `plugins/mat-pocok/apm.yml` defines the new skill bundle and its supporting `.apm/skills/` tree.
 
 ## Maintainer Commands
 
