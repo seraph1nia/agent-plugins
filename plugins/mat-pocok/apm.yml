@@ -1,0 +1,9 @@
+name: mat-pocok
+version: 1.0.0
+description: Gives agents a focused developer skill set for authoring and validating mat-pocok APM plugins
+author: seraph1nia
+license: MIT
+target:
+  - claude
+  - codex
+type: hybrid
