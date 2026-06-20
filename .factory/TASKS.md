@@ -2,4 +2,4 @@
 - [x] 2. Add the first narrowly scoped mat-pocok dev skill under `plugins/mat-pocok/.apm/skills/` and confirm the package still packs cleanly with one real skill.
 - [x] 3. Add the remaining mat-pocok dev skills under `plugins/mat-pocok/.apm/skills/`, keeping each skill focused, reusable, and independently testable.
 - [x] 4. Register `mat-pocok` in the root `apm.yml` and update `README.md` package list and package details to match the new package and its skill set.
-- [ ] 5. Regenerate `.claude-plugin/marketplace.json` from the root manifest and run `mise exec -- scripts/validate.sh` to verify the committed marketplace artifact and packaging checks pass.
+- [x] 5. Regenerate `.claude-plugin/marketplace.json` from the root manifest and run `mise exec -- scripts/validate.sh` to verify the committed marketplace artifact and packaging checks pass.
