@@ -12,3 +12,4 @@
   - keep new package sources local under `./plugins/<name>` to match the existing `factory` package pattern.
 - Work-item-specific bearing:
   - treat the public `mattpocock/skills` repo as the source of truth for the new developer-skills bundle.
+  - package name to implement: `mattpocock-skills`.
