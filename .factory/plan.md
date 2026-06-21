@@ -29,6 +29,7 @@ Add a new Matt Pocock skills package to the marketplace, mirroring the upstream 
 
 ## Implementation Notes
 - Use the upstream bundle name `mattpocock-skills` so the package name, folder name, and Claude plugin manifest stay aligned.
+- Treat `mattpocock/skills` as the source of truth for the exact skill tree, including any sibling resource files inside individual skill folders.
 - Keep the existing `factory` package untouched.
 - Preserve the repo’s current validation path: root `apm.yml` -> `apm pack` -> `.claude-plugin/marketplace.json`.
 
