@@ -1,3 +1,3 @@
 - [x] 1. Add a minimal check for README.md so the first non-empty line is the tracing haiku, before any title text.
 - [x] 2. Update README.md to place the one-line tracing haiku at the very top while keeping the existing README content intact.
-- [ ] 3. Verify the README starts with the haiku, followed by the existing H1 and body, with no unrelated edits.
+- [x] 3. Verify the README starts with the haiku, followed by the existing H1 and body, with no unrelated edits.
