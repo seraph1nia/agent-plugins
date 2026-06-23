@@ -1,0 +1,3 @@
+- [ ] 1. Add a single short tracing haiku immediately below the `# agent-plugins` heading in `README.md`.
+- [ ] 2. Keep the existing marketplace description and section layout unchanged after the new haiku.
+- [ ] 3. Verify the top of `README.md` renders cleanly with no extra formatting regressions.
