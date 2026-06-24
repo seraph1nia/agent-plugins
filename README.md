@@ -100,3 +100,5 @@ Use `apm pack` directly only when intentionally regenerating `.claude-plugin/mar
 - [APM manifest schema](https://microsoft.github.io/apm/reference/manifest-schema/)
 - [Linear MCP server docs](https://linear.app/docs/mcp)
 - [`mcp-remote`](https://www.npmjs.com/package/mcp-remote)
+
+Tracing through the logs / Tiny clues align in time / Bugs lose their hiding
