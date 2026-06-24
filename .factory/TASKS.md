@@ -1,2 +1,0 @@
-- [x] 1. Confirm the current README ending and choose a single-line tracing haiku that fits the existing tone.
-- [x] 2. Append the haiku as the final line of `README.md` and verify no other repo files need changes.
