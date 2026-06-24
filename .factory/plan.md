@@ -1,6 +1,5 @@
 # Plan
 
-1. Update [`README.md`](/workspace/repo/README.md) by adding a five-line poem in a small dedicated section near the end of the document, without changing any marketplace/package metadata or existing setup instructions.
-2. Keep the edit strictly documentation-only; do not touch `.claude-plugin/marketplace.json`, `apm.yml`, or plugin manifests.
-3. Verify the result with a focused diff check (`git diff --check` and a quick review of the README diff) to confirm the poem is exactly five lines and no unrelated files changed.
-
+1. Insert a dedicated poem section at the end of [`README.md`](/workspace/repo/README.md), after `## References`, with exactly five Markdown lines of poem text.
+2. Keep the change documentation-only: no edits to `.claude-plugin/marketplace.json`, `apm.yml`, or anything under `plugins/`.
+3. Validate the patch with `git diff --check` and a quick diff review to confirm only `README.md`, `.factory/context.md`, and `.factory/plan.md` are involved before handing off.

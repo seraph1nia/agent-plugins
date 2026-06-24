@@ -1,7 +1,6 @@
 # Context
 
-- No `CONTEXT.md`, `AGENTS.md`, or `docs/adr/` files are present in this checkout, so there is no additional repo memory to inherit for this task.
-- Relevant repo file: [`README.md`](/workspace/repo/README.md) is the only intended edit target for this work item.
-- Conventions from repo docs: [`VALIDATION.md`](/workspace/repo/VALIDATION.md) and [`scripts/validate.sh`](/workspace/repo/scripts/validate.sh) treat `.claude-plugin/marketplace.json` as a committed generated artifact; keep that file unchanged for a README-only change.
-- The repository uses plain Markdown prose in `README.md`; keep the new poem brief and consistent with the existing README tone.
-
+- No `CONTEXT.md`, `AGENTS.md`, or `docs/adr/` files are present in this checkout.
+- Edit target: [`README.md`](/workspace/repo/README.md) only.
+- Keep `.claude-plugin/marketplace.json`, `apm.yml`, and `plugins/**` untouched; repo docs treat the marketplace artifact as committed generated output (`VALIDATION.md`, `scripts/validate.sh`).
+- Add the poem as plain Markdown near the end of the README, after the maintainer/reference sections, so the package/docs content stays unchanged.
