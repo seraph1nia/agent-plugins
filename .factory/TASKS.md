@@ -1,3 +1,3 @@
 - [x] 1. Add one new line to the README poem block, keeping the existing tone, stanza shape, and markdown formatting intact.
 - [x] 2. Verify the README diff is limited to that poem block and does not change marketplace instructions, package docs, or generated manifest files.
-- [ ] 3. Confirm the updated README still renders cleanly and reflects exactly one additional poem line.
+- [x] 3. Confirm the updated README still renders cleanly and reflects exactly one additional poem line.
