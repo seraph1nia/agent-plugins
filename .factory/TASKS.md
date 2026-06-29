@@ -1,3 +1,3 @@
-- [x] 1. Add the planned poem-style copy to `README.md` in the opening/intro section without changing any marketplace manifests.
-- [x] 2. Verify the change remains docs-only by checking that `.claude-plugin/marketplace.json`, `apm.yml`, and `plugins/factory/apm.yml` are unchanged.
-- [x] 3. Run the repository validation entrypoint (or the lightest available markdown sanity check) to confirm the README update is clean.
+- [ ] 1. Add the brief poem-style copy to the README intro section, keeping the marketplace manifests and generated artifact untouched.
+- [ ] 2. Confirm the change is docs-only by checking that `apm.yml`, `plugins/factory/apm.yml`, and `.claude-plugin/marketplace.json` stay unchanged.
+- [ ] 3. Run the repo validation entrypoint, or the lightest markdown sanity check available, to verify the README update is clean.
