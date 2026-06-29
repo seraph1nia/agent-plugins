@@ -2,7 +2,7 @@
 
 A personal APM marketplace hosted at `seraph1nia/agent-plugins`.
 
-Code like rain, and make it sing.
+Code like cats, and make them purr.
 Small tools bloom in the spaces between.
 Gentle loops return with clearer light.
 
