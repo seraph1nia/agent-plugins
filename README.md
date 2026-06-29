@@ -6,6 +6,8 @@ Code like rain, and make it sing.
 Small tools bloom in the spaces between.
 Quiet hands leave bright trails behind.
 Gentle loops return with clearer light.
+Questions drift in gentle loops;
+answers bloom where care is kept.
 
 This repository publishes agent packages through [Agent Package Manager](https://microsoft.github.io/apm/). The root `apm.yml` is the marketplace authoring manifest, and each plugin package keeps its own `apm.yml` under `plugins/`.
 
