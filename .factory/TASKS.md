@@ -1,3 +1,3 @@
 - [x] 1. Replace the README opening stanza with a short poem about dogs, keeping the rest of the document unchanged.
 - [x] 2. Verify the README still renders cleanly after the edit (headings, code fences, and table formatting remain intact).
-- [ ] 3. Confirm no marketplace manifests or generated artifacts were modified as part of the documentation-only change.
+- [x] 3. Confirm no marketplace manifests or generated artifacts were modified as part of the documentation-only change.
