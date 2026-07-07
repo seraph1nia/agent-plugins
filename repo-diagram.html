@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>agent-plugins repo diagram</title>
+  <style>
+    :root {
+      --bg: #07111f;
+      --panel: rgba(255, 255, 255, 0.08);
+      --panel-strong: rgba(255, 255, 255, 0.12);
+      --text: #eef4ff;
+      --muted: #aac0e6;
+      --line: rgba(255, 255, 255, 0.18);
+      --shadow: 0 20px 80px rgba(0, 0, 0, 0.45);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(104, 225, 255, 0.25), transparent 25%),
+        radial-gradient(circle at 85% 18%, rgba(255, 112, 166, 0.22), transparent 22%),
+        radial-gradient(circle at 80% 80%, rgba(126, 255, 173, 0.14), transparent 25%),
+        linear-gradient(135deg, #06101d 0%, #0c1730 45%, #11163a 100%);
+      min-height: 100vh;
+      padding: 32px;
+    }
+    .shell {
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    .hero {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 24px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 5vw, 4rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+    }
+    .hero p {
+      margin: 0;
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+    .badges { display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end; }
+    .badge {
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+    }
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      overflow: hidden;
+    }
+    .panel-header {
+      padding: 18px 22px;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      background: linear-gradient(90deg, rgba(255,255,255,0.08), transparent);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    .panel-body { padding: 22px; }
+    .tree {
+      display: grid;
+      gap: 14px;
+      position: relative;
+    }
+    .row {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      align-items: center;
+      gap: 16px;
+      position: relative;
+    }
+    .node {
+      position: relative;
+      padding: 14px 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.16);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+      background: rgba(255,255,255,0.10);
+    }
+    .node::before {
+      content: "";
+      position: absolute;
+      left: -16px;
+      top: 50%;
+      width: 16px;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.7));
+      transform: translateY(-50%);
+    }
+    .root {
+      background: linear-gradient(135deg, #ff7a59, #ff3d81);
+    }
+    .claude { background: linear-gradient(135deg, #6a5cff, #8e7dff); }
+    .plugins { background: linear-gradient(135deg, #00b8d9, #00d2a8); }
+    .factory { background: linear-gradient(135deg, #ffd166, #ff9f1c); color: #222; }
+    .file { background: rgba(255,255,255,0.08); }
+    .node small { display: block; opacity: 0.82; margin-top: 6px; line-height: 1.3; }
+    .branch {
+      height: 100%;
+      border-left: 2px solid rgba(255,255,255,0.18);
+      margin-left: 78px;
+      padding-left: 24px;
+      display: grid;
+      gap: 12px;
+    }
+    .branch .node::before { left: -24px; width: 24px; }
+    .mini {
+      display: grid;
+      gap: 12px;
+    }
+    .card {
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .card h3 { margin: 0 0 8px; }
+    .card p { margin: 0; color: var(--muted); }
+    .flow {
+      display: grid;
+      gap: 14px;
+    }
+    .flow-item {
+      position: relative;
+      padding: 16px 18px 16px 20px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      overflow: hidden;
+    }
+    .flow-item::after {
+      content: "";
+      position: absolute;
+      inset: auto 18px 18px auto;
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.22), rgba(255,255,255,0.02));
+      filter: blur(0.5px);
+    }
+    .flow-item strong { display: block; margin-bottom: 6px; }
+    .flow-item span { color: var(--muted); }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .tag {
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .legend {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .legend div {
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    .footer-note {
+      margin-top: 18px;
+      color: rgba(255,255,255,0.62);
+      font-size: 0.88rem;
+    }
+    @media (max-width: 980px) {
+      body { padding: 18px; }
+      .hero, .grid { grid-template-columns: 1fr; display: grid; }
+      .badges { justify-content: flex-start; }
+      .row { grid-template-columns: 1fr; }
+      .node::before { display: none; }
+      .branch { margin-left: 0; padding-left: 0; border-left: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <section class="hero">
+      <div>
+        <h1>agent-plugins</h1>
+        <p>
+          A colorful map of the marketplace repository: one root manifest, one generated Claude marketplace file,
+          and one plugin package that wires agents to Linear via the remote MCP server.
+        </p>
+      </div>
+      <div class="badges">
+        <div class="badge">Marketplace: seraph1nia/agent-plugins</div>
+        <div class="badge">Root: apm.yml</div>
+        <div class="badge">Package: factory</div>
+        <div class="badge">Targets: claude + codex</div>
+      </div>
+    </section>
+
+    <div class="grid">
+      <section class="panel">
+        <div class="panel-header">Repository structure</div>
+        <div class="panel-body">
+          <div class="tree">
+            <div class="row">
+              <div class="node root">
+                / agent-plugins
+                <small>Marketplace root + docs + validation scripts.</small>
+              </div>
+              <div></div>
+            </div>
+
+            <div class="branch">
+              <div class="row">
+                <div class="node claude">
+                  .claude-plugin/
+                  <small>Generated marketplace artifact for Claude consumers.</small>
+                </div>
+                <div class="card">
+                  <strong>marketplace.json</strong>
+                  <p>Committed output of the root marketplace manifest.</p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="node plugins">
+                  plugins/
+                  <small>Container for plugin packages.</small>
+                </div>
+                <div class="card">
+                  <strong>Factory plugin</strong>
+                  <p>Single package published from this repo.</p>
+                </div>
+              </div>
+
+              <div class="branch">
+                <div class="row">
+                  <div class="node factory">
+                    plugins/factory/
+                    <small>APM package metadata for the Linear MCP integration.</small>
+                  </div>
+                  <div class="mini">
+                    <div class="card">
+                      <h3>apm.yml</h3>
+                      <p>Name, version, runtimes, and MCP dependency.</p>
+                    </div>
+                    <div class="card">
+                      <h3>Linear MCP</h3>
+                      <p>Launches via <code>npx -y mcp-remote https://mcp.linear.app/mcp</code>.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="node file">
+                scripts/ + .github/ + README.md + VALIDATION.md
+                <small>Validation workflow, docs, and repo helpers.</small>
+              </div>
+              <div class="card">
+                <strong>Support layer</strong>
+                <p>Trust, install, validate, and publish the marketplace.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">How the pieces connect</div>
+        <div class="panel-body">
+          <div class="flow">
+            <div class="flow-item" style="background: linear-gradient(135deg, rgba(255,122,89,0.24), rgba(255,61,129,0.12));">
+              <strong>1. Root marketplace manifest</strong>
+              <span>apm.yml defines the marketplace owner, homepage, plugin root, build tag pattern, and the package list.</span>
+            </div>
+            <div class="flow-item" style="background: linear-gradient(135deg, rgba(106,92,255,0.24), rgba(142,125,255,0.12));">
+              <strong>2. Generated Claude artifact</strong>
+              <span>.claude-plugin/marketplace.json mirrors the manifest so Claude tooling can consume the marketplace.</span>
+            </div>
+            <div class="flow-item" style="background: linear-gradient(135deg, rgba(0,184,217,0.24), rgba(0,210,168,0.12));">
+              <strong>3. Plugin package</strong>
+              <span>plugins/factory/apm.yml exposes the package metadata and targets claude + codex.</span>
+            </div>
+            <div class="flow-item" style="background: linear-gradient(135deg, rgba(255,209,102,0.28), rgba(255,159,28,0.12)); color: #201a00;">
+              <strong>4. Runtime dependency</strong>
+              <span>mcp-remote bridges agents to Linear’s official MCP endpoint using stdio.</span>
+            </div>
+          </div>
+
+          <div class="legend">
+            <div><strong style="color:#fff">Color cues</strong><br/>Pink = root manifest, purple = Claude artifact, teal = plugins, gold = package.</div>
+            <div><strong style="color:#fff">Core idea</strong><br/>One repo, one package, one generated artifact, one clear distribution path.</div>
+          </div>
+
+          <div class="footer-note">Open this file directly in a browser: <code>repo-diagram.html</code></div>
+        </div>
+      </section>
+    </div>
+  </div>
+</body>
+</html>
