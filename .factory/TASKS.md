@@ -1,0 +1,3 @@
+- [ ] 1. Replace the README’s current 4-line intro poem with a new 4-line poem about dogs.
+- [ ] 2. Keep the README intro’s markdown structure and line count unchanged outside those four lines.
+- [ ] 3. Review the rendered diff to confirm only the intended README intro text changed.
