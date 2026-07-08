@@ -1,3 +1,3 @@
-- [ ] 1. Replace the opening four-line poem in `README.md` with a new friendship-themed stanza directly below the project title.
+- [x] 1. Replace the opening four-line poem in `README.md` with a new friendship-themed stanza directly below the project title.
 - [ ] 2. Confirm the README formatting stays intact and the change remains documentation-only, with `apm.yml`, `plugins/factory/apm.yml`, and `.claude-plugin/marketplace.json` untouched.
 - [ ] 3. Review the final diff to ensure only the poem changed and the opening section still reads cleanly.
