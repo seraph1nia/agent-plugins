@@ -25,6 +25,10 @@ This lets APM resolve packages from this repository by marketplace name.
 apm install factory@agent-plugins
 ```
 
+```sh
+apm install grill-me@agent-plugins
+```
+
 You can also declare the package directly in a project manifest:
 
 ```yaml
@@ -45,6 +49,7 @@ apm install
 | Package | Description | Dependencies |
 | --- | --- | --- |
 | `factory` | Equips agents with Linear access for AI-driven software-delivery pipelines | Linear MCP server via `mcp-remote` |
+| `grill-me` | Gives agents Mat Pokock's grill me skill | Mat Pokock skill |
 
 ## Package Details
 
@@ -62,6 +67,10 @@ npx -y mcp-remote https://mcp.linear.app/mcp
 ```
 
 `mcp-remote` starts Linear's OAuth flow on first use and caches the token after authorization.
+
+### `grill-me`
+
+The `grill-me` package exposes Mat Pokock's `grill me` skill as an APM skill package.
 
 ## Repository Layout
 
