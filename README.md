@@ -2,10 +2,9 @@
 
 A personal APM marketplace hosted at `seraph1nia/agent-plugins`.
 
-Friends gather where the good paths start.
-Shared jokes keep rainy miles bright.
-A steady hand can warm the dark.
-Together, every road feels home.
+Dogs race the dawn on muddy, happy feet.
+Warm noses nudge the day awake with cheer.
+Their loyal hearts make every doorstep sweet.
 
 This repository publishes agent packages through [Agent Package Manager](https://microsoft.github.io/apm/). The root `apm.yml` is the marketplace authoring manifest, and each plugin package keeps its own `apm.yml` under `plugins/`.
 
