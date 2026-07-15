@@ -45,6 +45,7 @@ apm install
 | Package | Description | Dependencies |
 | --- | --- | --- |
 | `factory` | Equips agents with Linear access for AI-driven software-delivery pipelines | Linear MCP server via `mcp-remote` |
+| `poem-long` | Installs a general-purpose long-poem writing prompt for expansive creative drafting | None |
 
 ## Package Details
 
@@ -63,6 +64,12 @@ npx -y mcp-remote https://mcp.linear.app/mcp
 
 `mcp-remote` starts Linear's OAuth flow on first use and caches the token after authorization.
 
+### `poem-long`
+
+The `poem-long` package ships a prompt-oriented APM package under `plugins/poem-long/.apm/prompts/poem-long.prompt.md`. Installing it for Claude adds a `/poem-long` command that turns a natural-language brief into a substantial poem on any topic, with room for tone, form, imagery, and constraint guidance inside the brief itself.
+
+APM CLI 0.18.0 does not compile prompt primitives into a Codex-native command surface, so this package currently targets Claude rather than mirroring `factory`'s Claude/Codex target pair.
+
 ## Repository Layout
 
 ```text
@@ -72,9 +79,15 @@ apm.yml
 plugins/
   factory/
     apm.yml
+  poem-long/
+    apm.yml
+    README.md
+    .apm/
+      prompts/
+        poem-long.prompt.md
 ```
 
-The root `apm.yml` contains marketplace metadata and the `marketplace.packages` list. `.claude-plugin/marketplace.json` is generated from the root manifest and must be committed so consumers can register and install from this marketplace. `plugins/factory/apm.yml` contains the package metadata, target runtimes, and Linear MCP dependency.
+The root `apm.yml` contains marketplace metadata and the `marketplace.packages` list. `.claude-plugin/marketplace.json` is generated from the root manifest and must be committed so consumers can register and install from this marketplace. Each package keeps its own `apm.yml` under `plugins/`; prompt-oriented packages such as `poem-long` also keep their source assets under `.apm/`.
 
 ## Maintainer Commands
 
