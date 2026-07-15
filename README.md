@@ -6,6 +6,10 @@ Friends gather where the good paths start.
 Shared jokes keep rainy miles bright.
 A steady hand can warm the dark.
 Together, every road feels home.
+We trade our stories with the dawn.
+And leave a little light behind.
+The miles grow small when hearts stay near.
+Each welcome makes the world more kind.
 
 This repository publishes agent packages through [Agent Package Manager](https://microsoft.github.io/apm/). The root `apm.yml` is the marketplace authoring manifest, and each plugin package keeps its own `apm.yml` under `plugins/`.
 
