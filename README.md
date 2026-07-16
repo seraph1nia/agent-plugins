@@ -2,16 +2,16 @@
 
 A personal APM marketplace hosted at `seraph1nia/agent-plugins`.
 
-Cats drift through morning on soft and silent feet.
-Their whiskers taste the light that spills across the floor.
-They curl where noon is warm and make the stillness sweet.
-They watch the sparrows dance beyond the open door.
-At dusk they thread the halls like shadows made of fur.
-A single purr can smooth the roughest edge of day.
-Their bright and patient eyes hold secrets in a blur.
-They leave small moons of pawprints where the lamplight lay.
-When night has hushed the house, they keep the dark at bay.
-And dream beside our hearts until the dawn turns gray.
+Dogs greet the morning with a happy, bounding beat.
+Their noses find the wind that wanders through the door.
+They sprawl where sunlight pools and make the whole house sweet.
+They chase the laughing sparrows skimming past the porch and floor.
+At dusk they pace the halls with gentle, faithful stir.
+A wagging tail can smooth the roughest edge of day.
+Their warm and steady eyes need never say a word.
+They leave bright tracks of joy where lamplight used to lay.
+When night has hushed the house, they guard our dreams till day.
+And sleep beside our hearts until the clouds turn gray.
 
 This repository publishes agent packages through [Agent Package Manager](https://microsoft.github.io/apm/). The root `apm.yml` is the marketplace authoring manifest, and each plugin package keeps its own `apm.yml` under `plugins/`.
 
