@@ -1,0 +1,12 @@
+name: grill-me
+version: 1.0.0
+description: Gives agents Mat Pokock's grill me skill
+author: seraph1nia
+license: MIT
+target:
+  - claude
+  - codex
+type: skill
+skills:
+  - name: grill-me
+    source: mat-pocock
