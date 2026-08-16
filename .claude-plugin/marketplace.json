@@ -25,6 +25,24 @@
       ],
       "homepage": "https://github.com/seraph1nia/agent-plugins/tree/main/plugins/factory",
       "source": "./factory"
+    },
+    {
+      "name": "mat-pocok",
+      "description": "Gives agents a focused developer skill set for authoring and validating mat-pocok APM plugins",
+      "author": {
+        "name": "seraph1nia"
+      },
+      "license": "MIT",
+      "repository": "https://github.com/seraph1nia/agent-plugins",
+      "tags": [
+        "mat-pocok",
+        "skills",
+        "packaging",
+        "validation",
+        "marketplace"
+      ],
+      "homepage": "https://github.com/seraph1nia/agent-plugins/tree/main/plugins/mat-pocok",
+      "source": "./mat-pocok"
     }
   ]
 }
