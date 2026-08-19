@@ -1,3 +1,5 @@
+Tracing threads at dawn, breadcrumbs bloom through the debug fog.
+
 # agent-plugins
 
 A personal APM marketplace hosted at `seraph1nia/agent-plugins`.
