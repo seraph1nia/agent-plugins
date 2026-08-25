@@ -1,0 +1,12 @@
+name: matpocock
+version: 1.0.0
+description: Linear-first planning skills for grilling ideas into PRDs and sliced implementation issues
+author: seraph1nia
+license: MIT
+target:
+  - claude
+type: skill
+dependencies:
+  apm:
+    - name: factory
+      marketplace: agent-plugins

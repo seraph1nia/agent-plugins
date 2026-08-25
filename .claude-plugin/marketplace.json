@@ -25,6 +25,24 @@
       ],
       "homepage": "https://github.com/seraph1nia/agent-plugins/tree/main/plugins/factory",
       "source": "./factory"
+    },
+    {
+      "name": "matpocock",
+      "description": "Linear-first planning skills for grilling ideas into PRDs and sliced implementation issues",
+      "author": {
+        "name": "seraph1nia"
+      },
+      "license": "MIT",
+      "repository": "https://github.com/seraph1nia/agent-plugins",
+      "tags": [
+        "linear",
+        "planning",
+        "prd",
+        "issues",
+        "skills"
+      ],
+      "homepage": "https://github.com/seraph1nia/agent-plugins/tree/main/plugins/matpocock",
+      "source": "./matpocock"
     }
   ]
 }
