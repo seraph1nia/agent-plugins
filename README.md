@@ -1,12 +1,15 @@
 # agent-plugins
 
-A personal APM marketplace hosted at `seraph1nia/agent-plugins`.
+`agent-plugins` is the source repository for the `seraph1nia/agent-plugins` [Agent Package Manager](https://microsoft.github.io/apm/) marketplace.
 
-Dawn gathers in the firs, cool as creek stone.
-Mist beads on fern tips and the moss smells deep and green.
-A thrush drops bright notes through cedar shadow.
+The repository is primarily marketplace metadata and validation tooling:
 
-This repository publishes agent packages through [Agent Package Manager](https://microsoft.github.io/apm/). The root `apm.yml` is the marketplace authoring manifest, and each plugin package keeps its own `apm.yml` under `plugins/`.
+- the root `apm.yml` defines the published marketplace
+- `plugins/*/apm.yml` contains package manifests
+- `.claude-plugin/marketplace.json` is the generated Claude marketplace artifact that must stay committed
+- `scripts/` and `.github/workflows/validation.yml` keep the published metadata valid
+
+The marketplace currently publishes one package, `factory`, which equips Claude and Codex agents with Linear access through Linear's official remote MCP server.
 
 ## Getting Started
 
@@ -66,14 +69,23 @@ npx -y mcp-remote https://mcp.linear.app/mcp
 
 ```text
 apm.yml
+.mise.toml
 .claude-plugin/
   marketplace.json
+.github/
+  workflows/
+    validation.yml
 plugins/
   factory/
     apm.yml
+scripts/
+  validate.sh
+  validate-apm-metadata.sh
+  validate-apm.sh
+  validate-claude-marketplace.sh
 ```
 
-The root `apm.yml` contains marketplace metadata and the `marketplace.packages` list. `.claude-plugin/marketplace.json` is generated from the root manifest and must be committed so consumers can register and install from this marketplace. `plugins/factory/apm.yml` contains the package metadata, target runtimes, and Linear MCP dependency.
+The root `apm.yml` contains marketplace metadata and the `marketplace.packages` list. `.claude-plugin/marketplace.json` is generated from the root manifest and must be committed so consumers can register and install from this marketplace. `plugins/factory/apm.yml` contains the package metadata, target runtimes, and Linear MCP dependency. `.mise.toml` pins the local toolchain, and the validation workflow runs `scripts/validate.sh` in CI.
 
 ## Maintainer Commands
 
