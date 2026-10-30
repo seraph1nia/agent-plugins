@@ -26,3 +26,16 @@ marketplace:
         - project-management
         - factory
         - mcp
+    - name: poem-long
+      source: ./plugins/poem-long
+      description: Installs a general-purpose long-poem writing prompt for expansive creative drafting
+      homepage: https://github.com/seraph1nia/agent-plugins/tree/main/plugins/poem-long
+      repository: https://github.com/seraph1nia/agent-plugins
+      author:
+        name: seraph1nia
+      license: MIT
+      tags:
+        - poetry
+        - writing
+        - creative-writing
+        - prompt

@@ -1,0 +1,16 @@
+name: poem-long
+version: 1.0.0
+description: Writes substantial poems on any topic from a natural-language brief
+author: seraph1nia
+license: MIT
+homepage: https://github.com/seraph1nia/agent-plugins/tree/main/plugins/poem-long
+repository: https://github.com/seraph1nia/agent-plugins
+target:
+  - claude
+type: prompts
+includes: auto
+keywords:
+  - poetry
+  - writing
+  - creative-writing
+  - prompt
